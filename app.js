@@ -1,13 +1,15 @@
 const fs = require('fs');
 
+// delete file
+fs.unlink('writeMe.txt', () => {});
 
-// Sync method will block codes before completion
-// var readMe = fs.readFileSync('readMe.txt', 'utf-8');
-fs.readFile('readMe.txt', 'utf8', (err ,data) => {
-  fs.writeFile('writeMe.txt', data, () => {});
-});
+// fs.mkdirSync('sundry', () => {})
 
-console.log('this should come first becuase above is async');
-// fs.writeFileSync('writeMetxt', readMe);
+fs.mkdir('sundry', () => {
+  fs.readFile('readMe.txt', 'utf-8', (err, data) => {
+    fs.writeFile('./sundry/writeMe.txt', data, () => {});
+  });
+})
 
-// console.log(readMe);
+fs.unlink('./sundry/writeMe.txt', () => {});
+fs.rmdir('sundry', () => {});
