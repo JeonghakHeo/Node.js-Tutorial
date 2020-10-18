@@ -1,54 +1,13 @@
-const events = require('events');
+const fs = require('fs');
 
-// const myEmitter = new events.EventEmitter();
 
-// myEmitter.on('someEvent', function(message){
-//   console.log(message)
-// })
-
-// myEmitter.emit('someEvent', 'the event was emitted');
-
-// To inherit events emitter on our custom constructor
-const util = require('util');
-
-var Person = function(name){
-  this.name = name;
-};
-
-util.inherits(Person, events.EventEmitter);
-
-const james = new Person('james');
-const mario = new Person('mario');
-const yoshi = new Person('yoshi');
-
-const people = [james, mario, yoshi];
-
-people.forEach(person => {
-  person.on('speak', function(mssg){
-    console.log(person.name + ' said: ' + mssg);
-  });
+// Sync method will block codes before completion
+// var readMe = fs.readFileSync('readMe.txt', 'utf-8');
+fs.readFile('readMe.txt', 'utf8', (err ,data) => {
+  fs.writeFile('writeMe.txt', data, () => {});
 });
 
-james.emit('speak', 'hey dudes');
-mario.emit('speak', 'hey! I am Mario');
+console.log('this should come first becuase above is async');
+// fs.writeFileSync('writeMetxt', readMe);
 
-
-
-// var Person = function(name){
-//   this.name = name;
-// };
-
-// util.inherits(Person, events.EventEmitter);
-
-// const Jay = new Person('Jay');
-// const Charlie = new Person('Charlie');
-
-// const Jeonghak = [Jay, Charlie];
-
-// Jeonghak.forEach(person => {
-//   person.on('speak', function(mssg){
-//     console.log(`${person.name} said ${mssg}`)
-//   });
-// });
-
-// Jay.emit('speak', 'just do it!');
+// console.log(readMe);
