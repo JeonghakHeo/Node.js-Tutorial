@@ -7,8 +7,8 @@ const fs = require('fs');
 // whenever we send a reqeust to the server, the function will fire
 const server = http.createServer((req, res) => {
   console.log('requrest was made: ' + req.url)
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  const myReadStream = fs.createReadStream(__dirname + '/readMe.txt', 'utf-8');
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  const myReadStream = fs.createReadStream(__dirname + '/index.html', 'utf-8');
   myReadStream.pipe(res);
    
 });
