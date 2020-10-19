@@ -1,21 +1,28 @@
 const express = require('express');
-
 const app = express();
 
+// set up a default view engine with ejs
+// by default when we request some views or templates, it's going to look in /views
+app.set('view engine', 'ejs'); 
+
 app.get('/', (req, res)=> {
-  res.send('this is the homepage');
+  // send HTML page back by sendFile
+  res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/contact', (req, res)=> {
-  res.send('this is the contact');
+  res.sendFile(__dirname + '/contact.html');
 });
 
+/*
 app.get('/profile/:id', (req, res) => {
   res.send('You requested to see a profile with the id of ' + req.params.id);
 });
+*/
 
-app.get('/user/:name', (req, res) => {
-  res.send('You requested to see a profile with the name of ' + req.params.name);
+app.get('/profile/:name', (req, res) => {
+  const data = {age: 29, job: 'ninja'};
+  res.render('profile', {person: req.params.name, data: data});
 });
 
 app.listen(3000);
