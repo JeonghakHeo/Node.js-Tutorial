@@ -5,6 +5,17 @@ const app = express();
 // by default when we request some views or templates, it's going to look in /views
 app.set('view engine', 'ejs'); 
 
+// Middleware
+/*
+app.use('/assets', (req, res, next) => {
+  console.log(req.url);
+  next();
+});
+*/
+
+// matches after /assets
+app.use('/assets', express.static('assets'));
+
 app.get('/', (req, res)=> {
   // send HTML page back by sendFile
   res.render('index');
