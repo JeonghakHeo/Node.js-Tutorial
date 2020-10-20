@@ -1,5 +1,9 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();
+
+const urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 // set up a default view engine with ejs
 // by default when we request some views or templates, it's going to look in /views
@@ -21,9 +25,15 @@ app.get('/', (req, res)=> {
   res.render('index');
 });
 
-app.get('/contact', (req, res)=> {
+app.get('/contact', (req, res) => {
   // console.log(req.query);
   res.render('contact', {qs: req.query});
+});
+
+app.post('/contact', urlencodedParser, (req, res) => {
+  // console.log(req.query);
+  console.log(req.body);
+  res.render('contact-success', {data: req.body});
 });
 
 /*

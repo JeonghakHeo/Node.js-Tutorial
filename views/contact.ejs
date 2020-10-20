@@ -11,8 +11,9 @@
   <p>Contact the collest cats on the web right there...</p>
   <p><%= qs.dept %></p>
 
-  <form id="contact-form">
+  <form id="contact-form" method="POST" action="/contact">
     <label for="who">Who do you want to contact?</label>
+    <!-- pre-popluate via query string  -->
     <input type="text" name="who" value="<%= qs.person %>">
     <label for="department">Which department?</label>
     <input type="text" name="department" value="<%= qs.dept %>">
