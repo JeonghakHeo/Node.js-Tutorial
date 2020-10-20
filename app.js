@@ -22,7 +22,8 @@ app.get('/', (req, res)=> {
 });
 
 app.get('/contact', (req, res)=> {
-  res.render('contact');
+  // console.log(req.query);
+  res.render('contact', {qs: req.query});
 });
 
 /*
