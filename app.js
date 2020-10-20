@@ -13,7 +13,7 @@ app.use('/assets', (req, res, next) => {
 });
 */
 
-// matches after /assets
+// matches after /assets in the url
 app.use('/assets', express.static('assets'));
 
 app.get('/', (req, res)=> {
